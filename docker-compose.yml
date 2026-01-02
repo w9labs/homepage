@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  w9-homepage:
+    image: ghcr.io/${GITHUB_USER:-w9labs}/w9-homepage:latest
+    container_name: w9-homepage
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - w9-network
+
+networks:
+  w9-network:
+    external: true

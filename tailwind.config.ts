@@ -8,17 +8,12 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            colors: {
-                background: "var(--background)",
-                foreground: "var(--foreground)",
-                brand: {
-                    dark: "#0b0c10",
-                    gray: "#1f2833",
-                    light: "#c5c6c7",
-                    cyan: "#66fcf1",
-                    teal: "#45a29e"
-                }
-            },
+            background: "var(--bg)",
+            foreground: "var(--fg)",
+            accent: "var(--accent)",
+            border: "var(--border)",
+            muted: "#666666",
+            warning: "#ff3333",
         },
     },
     plugins: [],

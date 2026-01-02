@@ -92,3 +92,41 @@ body {
     color: black;
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
 }
+
+@keyframes flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    5% {
+        opacity: 0.05;
+    }
+
+    10% {
+        opacity: 0.1;
+    }
+
+    15% {
+        opacity: 0.15;
+    }
+
+    20% {
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.05;
+    }
+
+    80% {
+        opacity: 0.15;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+.animate-flicker {
+    animation: flicker 4s infinite alternate;
+}

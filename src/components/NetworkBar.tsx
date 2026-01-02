@@ -9,25 +9,25 @@ const NETWORK_LINKS = [
 
 export default function NetworkBar({ active }: { active: string }) {
     return (
-        <div className="network-bar">
-            <div>
-                <span className="network-label">W9 Labs Network</span>
-                <span className="network-tagline">Open-source automation for independent teams</span>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-3 border-b border-white/10 text-xs tracking-wider">
+            <div className="flex flex-col mb-3 md:mb-0">
+                <span className="font-bold text-muted uppercase tracking-widest">W9 Labs Network</span>
             </div>
-            <nav className="network-links">
+            <nav className="flex flex-wrap gap-6">
                 {NETWORK_LINKS.map((link) => {
                     const isActive = active === link.id
-                    const className = `network-link ${isActive ? 'active' : ''}`
                     return (
                         <a
                             key={link.id}
                             href={link.href}
                             target={link.external ? "_blank" : undefined}
                             rel={link.external ? "noreferrer" : undefined}
-                            className={className}
+                            className={`group flex flex-col md:flex-row md:items-baseline gap-1 transition-all duration-200 ${isActive ? 'text-accent' : 'text-muted hover:text-foreground'
+                                }`}
                         >
-                            <span>{link.label}</span>
-                            <small>{link.description}</small>
+                            <span className="font-bold uppercase">{link.label}</span>
+                            <span className="hidden md:inline text-white/20 group-hover:text-white/40">/</span>
+                            <small className="opacity-60 group-hover:opacity-100">{link.description}</small>
                         </a>
                     )
                 })}
