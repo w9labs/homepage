@@ -1,0 +1,14 @@
+target/
+**/*.rs.bk
+Cargo.lock
+pkg/
+site/
+.env
+.env.local
+.node_modules/
+.idea/
+.vscode/
+*.swp
+.DS_Store
+src.old/
+.next.old/

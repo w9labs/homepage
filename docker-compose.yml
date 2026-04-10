@@ -1,19 +1,41 @@
 version: '3.8'
-
 services:
   w9-homepage:
     image: ghcr.io/${GITHUB_USER:-w9labs}/w9-homepage:latest
     container_name: w9-homepage
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.w9-homepage.rule=Host(`w9.se`)"
+      - "traefik.http.routers.w9-homepage.entrypoints=websecure"
+      - "traefik.http.routers.w9-homepage.tls=true"
+      - "traefik.http.services.w9-homepage.loadbalancer.server.port=3000"
+    ports:
+      - "${W9_HOMEPAGE_PORT:-3000}:3000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
     networks:
       - w9-network
-
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: w9-homepage-watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_LABEL_ENABLE=true
+    command: --interval 300 --scope w9-homepage
+    networks:
+      - w9-network
 networks:
   w9-network:
     external: true
