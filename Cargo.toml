@@ -3,7 +3,7 @@ members = ["server", "client"]
 resolver = "2"
 
 [workspace.dependencies]
-leptos = { version = "0.6", features = ["csr"] }
+leptos = "0.6"
 leptos_meta = "0.6"
 leptos_router = "0.6"
 axum = "0.7"
@@ -16,6 +16,3 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 dotenvy = "0.15"
 anyhow = "1"
-
-# Pin time crate to MSRV-compatible version
-time = ">=0.3.20, <0.3.37"
