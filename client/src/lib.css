@@ -564,3 +564,16 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* W9 Logo Wordmark */
+.logo-img {
+  height: 48px;
+  width: auto;
+  image-rendering: pixelated;
+}
+.footer-logo {
+  height: 32px;
+  width: auto;
+  image-rendering: pixelated;
+  margin-bottom: 0.5rem;
+}
